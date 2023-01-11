@@ -7,7 +7,7 @@ class Animator {
 
     };
 
-    drawFrame(tick, ctx, x, y) {
+    drawFrame(tick, ctx, x, y, scale) {
         this.elapsedTime += tick;
 
         if (this.elapsedTime > this.totalTime) this.elapsedTime -= this.totalTime;
@@ -18,16 +18,16 @@ class Animator {
         }
 
         let frame = this.currentFrame();
-        if (this.reverse) {
-            frame = this.frameCount - frame - 1;
-        }
+        // if (this.reverse) {
+        //     frame = this.frameCount - frame - 1;
+        // }
 
         ctx.drawImage(this.spritesheet,
             this.xStart + frame * (this.width + this.framePadding), this.yStart,
             this.width, this.height,
             x, y,
-            this.width,
-            this.height);
+            this.width * scale,
+            this.height * scale);
     };
 
     currentFrame() {
